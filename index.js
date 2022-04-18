@@ -15,7 +15,7 @@ app.get('/', (req, res) =>{
     res.sendFile('/views/main.html', {root: __dirname})
 })
 
-app.post('/createPOST', (req, res)=>{
+app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     try{
         if(!req.body.data && !req.body.author) return;
 
@@ -27,8 +27,7 @@ app.post('/createPOST', (req, res)=>{
         res.send(f + "<br><br> ~" + req.body.author);
     }
     catch(err){
-        console.log(err);
-        return res.status(500).send("server error");
+        return res.status(500).send(err);
     }
 })
 
