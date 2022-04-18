@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: azure;
+    color:rgb(27, 27, 27);
+}
+#container{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+#header{
+    width: max-content;
+    border-bottom: 0.5px solid black;
+}
+#bottom{
+    width: max-content;
+}
+#credit{
+    position: absolute;
+    bottom: 0;
+    font-family: sans-serif;
+}
