@@ -15,7 +15,7 @@ app.get('/', (req, res) =>{
     res.sendFile('/views/main.html', {root: __dirname})
 })
 
-app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
+app.post('/createPOST', (req, res)=>{
     try{
         if(!req.body.data && !req.body.author) return;
 
