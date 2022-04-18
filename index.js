@@ -12,7 +12,7 @@ app.use('/:url', url);
 
 
 app.get('/', (req, res) =>{
-    res.render('main', {});
+    res.sendFile('/views/main.html', {root: __dirname})
 })
 
 app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
