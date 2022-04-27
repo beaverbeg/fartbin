@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const {MongoClient} = require('mongodb');
-const fs = require('fs')
+const fs = require('fs');
 const app = express();
 
 const url = 'mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -67,16 +67,21 @@ client.connect((err)=>{
       let found = false;
       let foundNum;
 
+      var dbo = client.db("myFirstDatabase");
 
-      db.collection("urls").findOne({}, function(err, result){
+
+      dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
-        console.log(result);
-        if(result){
+        console.log(result)
+        console.log(result.length);
+        console.log(result[8]);
+        /*if(result){
           res.send(result.data +' '+ result.author);
         }
         else{
           res.send("i think you nob!")
-        }
+        }*/
+        res.send("check console")
         db.close();
       })
     }
