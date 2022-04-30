@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const {MongoClient} = require('mongodb');
+const {MongoClient, CommandStartedEvent} = require('mongodb');
 const fs = require('fs');
 const app = express();
 
@@ -55,19 +55,33 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
   app.get('/:url', (req, res)=>{
     try{
-      var url = JSON.stringify(req.params.url);
-      let found = false;
-      let foundNum;
+      var url = req.params.url;
+      var found = false;
+      var foundText = "";
+      var foundAuthor = "";
 
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
-        let found = false;
+        if(result){
+          for(var i=0; i<result.length; i++){
+            if(result[i].url == url){
+              found = true;
+              foundText = result[i].text;
+              foundAuthor = result[i].author;
+              break;
+            }
+          }
 
-        console.log("result lenght is: "+result.length);
-        console.log(result[0]);
-        console.log("im between!");
-        console.log(result[1]);
-        res.send(result[0].text + result[0].author);
+          if(found==false){
+            res.send("invalild url bruh")
+          }
+          else{
+            res.send(foundText + "<br><br>" + foundAuthor);
+          }
+        }
+        else{
+          res.send("Could not get database collection")
+        }
         db.close();
       })
     }
