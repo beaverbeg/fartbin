@@ -26,7 +26,9 @@ app.get('/', bodyParser.urlencoded({extended: false}),  (req, res) =>{
     res.sendFile('/views/main.html', {root: __dirname})
 })
 
-
+client.connect((err)=>{
+  var dbo = client.db("myFirstDatabase");
+  
 app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     try{
         if(!req.body.data && !req.body.author) return;
@@ -38,20 +40,11 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
         
         let newData = {url: newUrl, text: Index, author: req.body.author};
 
-        var UrlSchema = mongoose.Schema({
-            url: String,
-            data: String,
-            author: String
-          }, {collection: 'urls'});
-       
-          var Url = mongoose.model('URL', UrlSchema, 'urls');
-       
-          var url1 = new Url({ url: newUrl, data: Index, author: req.body.author});
-       
-          url1.save(function (err, url) {
-            if (err) return console.error(err);
-            console.log(url.url + " saved to urls collection.");
-          });
+        dbo.collection("urls").insertOne(newData, function(err, res){
+          if(err) throw err;
+          console.log("data should be in collection bruh")
+          db.close();
+        })
 
         res.send("/"+newUrl);
     }
@@ -60,27 +53,20 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     }
 })
 
-client.connect((err)=>{
   app.get('/:url', (req, res)=>{
     try{
       var url = JSON.stringify(req.params.url);
       let found = false;
       let foundNum;
 
-      var dbo = client.db("myFirstDatabase");
-
-
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
-        console.log(result)
-        console.log(result.length);
-        console.log(result[8]);
-        /*if(result){
-          res.send(result.data +' '+ result.author);
-        }
-        else{
-          res.send("i think you nob!")
-        }*/
+        let found = false;
+
+        console.log("result lenght is: "+result.length)
+        console.log(result[0]);
+        console.log("im between!")
+        console.log(result[1]);
         res.send("check console")
         db.close();
       })
