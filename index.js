@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
 const fs = require('fs');
+const urlencoded = require('body-parser/lib/types/urlencoded');
 const app = express();
 
 const url = 'mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -73,7 +74,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
           }
 
           if(found==false){
-            res.send("invalild url bruh")
+            res.sendFile('/views/hc/notfound.html', {root: __dirname});
           }
           else{
             res.send(foundText + "<br><br>" + foundAuthor);
