@@ -63,11 +63,11 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
         if(err) throw err;
         let found = false;
 
-        console.log("result lenght is: "+result.length)
+        console.log("result lenght is: "+result.length);
         console.log(result[0]);
-        console.log("im between!")
+        console.log("im between!");
         console.log(result[1]);
-        res.send("check console")
+        res.send(result[0].text + result[0].author);
         db.close();
       })
     }
