@@ -35,11 +35,13 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
         if(!req.body.data && !req.body.author) return;
 
         var Data = req.body.data;
+        var Title = req.body.title;
+        var Author = req.body.author;
         var Index = Data.replace(/(?:\r\n|\r|\n)/g, '<:NEWLINE:>');
 
         let newUrl = makeid(7);
         
-        let newData = {url: newUrl, text: Index, author: req.body.author};
+        let newData = {url: newUrl,title: Title, text: Index, author: Author};
 
         dbo.collection("urls").insertOne(newData, function(err, res){
           if(err) throw err;
@@ -58,17 +60,20 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     try{
       var url = req.params.url;
       var found = false;
+      var FoundTitle = "";
       var foundText = "";
       var foundAuthor = "";
 
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
+        console.log(result);
         if(result){
           for(var i=0; i<result.length; i++){
             if(result[i].url == url){
               found = true;
               foundText = result[i].text;
               foundAuthor = result[i].author;
+              FoundTitle = result[i].title;
               break;
             }
           }
@@ -77,7 +82,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
             res.sendFile('/views/hc/notfound.html', {root: __dirname});
           }
           else{
-            res.send(foundText + "<br><br>" + foundAuthor);
+            res.send(FoundTitle+":<br><br>"+foundText + "<br><br>Made by" + foundAuthor);
           }
         }
         else{
