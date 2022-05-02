@@ -20,7 +20,7 @@ db.once('open', function() {
     console.log("Connection Successful!");
 });
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/views/'));
 app.set('view engine', 'ejs');
 
 app.get('/', bodyParser.urlencoded({extended: false}),  (req, res) =>{
@@ -55,6 +55,28 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
         return res.status(500).send(err);
     }
 })
+
+  app.get('/search', (req, res)=>{
+    try{
+      dbo.collection("urls").find({}).toArray(function(err, result){
+        if(err) throw err;
+        //use this method to add variables to names
+        var obj = {"length": result.length, "names": []};
+        if(result.length<1) return res.send("There is no fartbins at the server. You can create one now!"); 
+        for(var i = 0; i < result.length; i++){
+          console.log("i is: "+i);
+          obj.names["title"+i] = result[i].title;
+          obj.names["url"+i] = result[i].url;
+        }
+        console.log(obj);
+        res.render('search', {data: obj});
+      })
+    }
+    catch(err){
+      console.log(err);
+      return res.status(500).send("Server Error");
+    }
+  })
 
   app.get('/:url', (req, res)=>{
     try{
