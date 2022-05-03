@@ -61,15 +61,15 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
         //use this method to add variables to names
-        var obj = {"length": result.length, "names": []};
+        var obj = {"length": result.length};
         if(result.length<1) return res.send("There is no fartbins at the server. You can create one now!"); 
         for(var i = 0; i < result.length; i++){
           console.log("i is: "+i);
-          obj.names["title"+i] = result[i].title;
-          obj.names["url"+i] = result[i].url;
+          obj["title"+i] = result[i].title;
+          obj["url"+i] = result[i].url;
         }
         console.log(obj);
-        res.render('search', {data: obj});
+        res.render('search', {obj});
       })
     }
     catch(err){
