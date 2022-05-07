@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
-const fs = require('fs');
 const urlencoded = require('body-parser/lib/types/urlencoded');
 const app = express();
 
@@ -45,7 +44,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
         dbo.collection("urls").insertOne(newData, function(err, res){
           if(err) throw err;
-          console.log("data should be in collection bruh")
+          console.log("new data in collection")
           db.close();
         })
 
@@ -60,15 +59,14 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     try{
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
-        //use this method to add variables to names
+        //im using this method to add variables to names
+        //so i dont need to create array
         var obj = {"length": result.length};
         if(result.length<1) return res.send("There is no fartbins at the server. You can create one now!"); 
         for(var i = 0; i < result.length; i++){
-          console.log("i is: "+i);
           obj["title"+i] = result[i].title;
           obj["url"+i] = result[i].url;
         }
-        console.log(obj);
         res.render('search', {obj});
       })
     }
@@ -88,7 +86,6 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
       dbo.collection("urls").find({}).toArray(function(err, result){
         if(err) throw err;
-        console.log(result);
         if(result){
           for(var i=0; i<result.length; i++){
             if(result[i].url == url){
@@ -124,7 +121,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 
-  extended: false
+  extended:	false
 })); 
 app.use(express.json());
 app.use(express.urlencoded());

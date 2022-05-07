@@ -4,8 +4,9 @@
     var inner = "";
     var index = document.getElementById("holder").innerHTML;
     var data = JSON.parse(index);
+    inner = inner + "Current amount fartbin's: " + data["length"];
     for(var i = 0; i < data["length"]; i++){
-       inner = inner + "<br><br>Title: " + data["title"+i] + "<br>url: https://fartbin.cf/" + data["url"+i];
+       inner = inner + "<br><br>Title: " + data["title"+i] + `<br>url: <a target="_blank" href="https://fartbin.cf/${data["url"+i]}"> here </a>`;
     }
     document.getElementById("holder").innerHTML = inner;
 </script>
