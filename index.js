@@ -124,7 +124,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 
-  extended: true
+  extended: false
 })); 
 app.use(express.json());
 app.use(express.urlencoded());
