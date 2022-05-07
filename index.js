@@ -104,7 +104,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
             res.sendFile('/views/hc/notfound.html', {root: __dirname});
           }
           else{
-            res.send(FoundTitle+":<br><br>"+foundText + "<br><br>Made by" + foundAuthor);
+            res.send(FoundTitle+":<br><br>"+foundText + "<br><br>Made by " + foundAuthor);
           }
         }
         else{
@@ -124,7 +124,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 
-  extended: true
+  extended: false
 })); 
 app.use(express.json());
 app.use(express.urlencoded());
