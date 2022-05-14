@@ -5,7 +5,7 @@ const {MongoClient, CommandStartedEvent} = require('mongodb');
 const urlencoded = require('body-parser/lib/types/urlencoded');
 const app = express();
 
-const url = 'mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const url = process.env.TOK;
 
 mongoose.connect(url);
 
