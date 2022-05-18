@@ -8,6 +8,7 @@
     "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "serverless-http": "^3.0.1"
   }
 }

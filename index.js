@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+const serverless = require('serverless-http');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
-const urlencoded = require('body-parser/lib/types/urlencoded');
 const app = express();
 
-const url = process.env.TOK;
+//const url = process.env.TOK;
+const url = "mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(url);
 
