@@ -139,6 +139,5 @@ function makeid(length) {
 }
 
 
-var PORT = process.env.PORT || 3030;
-
-app.listen(PORT, () => console.log("server working."));
+module.exports = app;
+module.exports.handler = serverless(app);
