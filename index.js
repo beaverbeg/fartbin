@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const serverless = require('serverless-http');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
 const app = express();
 
@@ -139,5 +138,8 @@ function makeid(length) {
 }
 
 
-module.exports = app;
-module.exports.handler = serverless(app);
+const PORT = process.env.PORT || 3030;
+
+app.listen(PORT, ()=>{
+  console.log("server is lisingiign g");
+})
