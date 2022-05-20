@@ -1,12 +1,9 @@
-<div id="holder"><%=JSON.stringify(obj)%></div>
-
-<script type="text/javascript">
-    var inner = "";
-    var index = document.getElementById("holder").innerHTML;
-    var data = JSON.parse(index);
-    inner = inner + "Current amount fartbin's: " + data["length"];
-    for(var i = 0; i < data["length"]; i++){
-       inner = inner + "<br><br>Title: " + data["title"+i] + `<br>url: <a target="_blank" href="https://fartbin.cf/${data["url"+i]}"> here </a>`;
-    }
-    document.getElementById("holder").innerHTML = inner;
-</script>
+<html>
+    <head>
+        <link rel="stylesheet" href="hc/css/search.css">
+    </head>
+    <body>
+        <div id="holder" class="holder"><%=JSON.stringify(obj)%></div>
+        <script type="text/javascript" src="hc/js/search.js"></script>
+    </body>
+</html>
