@@ -1,0 +1,23 @@
+<p id="holder">
+    <%=JSON.stringify(obj)%>
+</p>
+<script>
+    var obj = JSON.parse(document.getElementById("holder").innerHTML);
+
+    //parsing to json or this shit doesnt support special characters kill me pls
+    var foundText = obj["foundText"].replace(/&lt;/g, '<').replace(/&gt;/g, '>') ;
+    foundText = foundText.replace(/<:NEWLINE:>/g, '<br>')
+
+    var foundTitle = obj["foundTitle"];
+
+    var foundAuthor = obj["foundAuthor"];
+
+
+    document.getElementById("holder").innerHTML = `
+    <h1> ${foundTitle}</h1>
+    <br><br>
+    ${foundText}
+    <br><br><br><br>
+    Made by <strong>${foundAuthor}</strong>
+    `
+</script>

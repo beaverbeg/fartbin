@@ -80,7 +80,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
     try{
       var url = req.params.url;
       var found = false;
-      var FoundTitle = "";
+      var foundTitle = "";
       var foundText = "";
       var foundAuthor = "";
 
@@ -92,7 +92,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
               found = true;
               foundText = result[i].text;
               foundAuthor = result[i].author;
-              FoundTitle = result[i].title;
+              foundTitle = result[i].title;
               break;
             }
           }
@@ -101,7 +101,8 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
             res.sendFile('/views/hc/notfound.html', {root: __dirname});
           }
           else{
-            res.send(FoundTitle+":<br><br>"+foundText + "<br><br>Made by " + foundAuthor);
+            var obj = {foundText: foundText, foundAuthor: foundAuthor, foundTitle: foundTitle}
+            res.render('page', {obj});
           }
         }
         else{
