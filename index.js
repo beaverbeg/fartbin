@@ -25,6 +25,9 @@ app.set('view engine', 'ejs');
 app.get('/', bodyParser.urlencoded({extended: false}),  (req, res) =>{
     res.sendFile('/views/main.html', {root: __dirname})
 })
+app.get('/create', bodyParser.urlencoded({extended: false}), (req, res)=>{
+  res.sendFile('/views/create.html', {root: __dirname})
+})
 
 client.connect((err)=>{
   var dbo = client.db("myFirstDatabase");
