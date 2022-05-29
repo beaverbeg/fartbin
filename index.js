@@ -39,6 +39,13 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
         var Data = req.body.data;
         var Title = req.body.title;
         var Author = req.body.author;
+
+        //checking this here too cuz submit.disabled can be
+        //changed by user
+        if(Title.length > 40 || Author.lenght > 30){
+          return res.send("invalid data!");
+        }
+
         var Index = Data.replace(/(?:\r\n|\r|\n)/g, '<:NEWLINE:>');
 
         let newUrl = makeid(7);
