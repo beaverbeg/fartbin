@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hc/css/create.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Indie+Flower&display=swap" rel="stylesheet">
+
     <title>fartbin</title>
 </head>
 <body>
-    <h1>create a fartbin</h1>
+    <h1 class="main-text"><p>Create a </p><p class="fart">fartbin</p></h1>
+    <div class="input-holder">
     <form action="/createPOST" method="post">
-        <input type="text" name="title" id="title" placeholder="Title">
-        <textarea name="data" id="data" cols="200" rows="50"></textarea>
-        <input type="text" id="author" name="author" placeholder="Provide author">
-        <input type="submit" value="create" id="submit">
+        <input class="input" type="text" name="title" id="title" placeholder="The title (required)">
+        <textarea class="input" name="data" id="data" cols="1000" rows="1000" placeholder="The text (required)"></textarea>
+        <input class="input" type="text" id="author" name="author" placeholder="The author (required)">
+        <input class="input" type="submit" value="create" id="submit">
     </form>
+    </div>
     <script src="hc/js/create.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+}
+body{
+    font-family: sans-serif;
+}
+.fart{
+    font-family: 'Indie Flower', cursive;
+}
+.input-holder{
+    margin: 10px;
+}
+.input-holder .input{
+    display: flex;
+}
+.main-text{
+    text-align: center;
+}
+.main-text p{
+    display: inline;
+}
+#title{
+    width: 25em;
+    height: 3em;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: rgb(216, 255, 216);
+}
+#author{
+    width: 25em;
+    height: 3em;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: rgb(216, 237, 255);
+}
+#submit{
+    background-color: green;
+    border: none;
+    border-radius: 18px;
+    height: 3em;
+    width: 7em;
+    cursor: pointer;
+    color: white;
+    font-size: 90%;
+}
+#submit :disabled {
+    background-color: rgb(31, 47, 31);
+    cursor: none;
+}
+#data{
+    height: 80em;
+    width: 45em;
+    resize: none;
+    overflow: auto;
+    white-space: nowrap;
+}
+.input-holder #data, #title, #author, #submit{
+    margin-top: 5px;
+}
