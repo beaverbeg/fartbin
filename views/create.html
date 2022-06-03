@@ -16,8 +16,11 @@
     <h1 class="main-text"><p>Create a </p><p class="fart">fartbin</p></h1>
     <div class="input-holder">
     <form action="/createPOST" method="post">
+        <p style="color:red;margin-top: 10px;visibility:hidden;" id="title-error">Title cant be longer than 40 characters</p>
         <input class="input" type="text" name="title" id="title" placeholder="The title (required)">
+        <p style="color:red;margin-top: 10px;visibility:hidden;" id="data-error">Text cant be longer than 500000 characters</p>
         <textarea class="input" name="data" id="data" cols="1000" rows="1000" placeholder="The text (required)"></textarea>
+        <p style="color:red;margin-top: 10px;visibility:hidden;" id="author-error">Author cant be longer than 30 characters</p>
         <input class="input" type="text" id="author" name="author" placeholder="The author (required)">
         <input class="input" type="submit" value="create" id="submit">
     </form>

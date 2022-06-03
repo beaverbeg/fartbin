@@ -25,6 +25,7 @@ body{
     border: 2px solid black;
     border-radius: 15px;
     background-color: rgb(216, 255, 216);
+    outline: none;
 }
 #author{
     width: 25em;
@@ -32,6 +33,7 @@ body{
     border: 2px solid black;
     border-radius: 15px;
     background-color: rgb(216, 237, 255);
+    outline: none;
 }
 #submit{
     background-color: green;
@@ -42,10 +44,11 @@ body{
     cursor: pointer;
     color: white;
     font-size: 90%;
+    margin-top: 20px;
 }
-#submit :disabled {
-    background-color: rgb(31, 47, 31);
-    cursor: none;
+#submit[disabled]{
+    background-color: rgb(0, 0, 0);
+    cursor: not-allowed;
 }
 #data{
     height: 80em;
@@ -53,6 +56,8 @@ body{
     resize: none;
     overflow: auto;
     white-space: nowrap;
+    outline: none;
+    border: 2px solid black;
 }
 .input-holder #data, #title, #author, #submit{
     margin-top: 5px;
