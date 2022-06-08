@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
 const app = express();
 
-//const url = process.env.TOK;
-const url = "mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const a = process.env.TOK;
+const url = a;
 
 mongoose.connect(url);
 
@@ -42,7 +42,7 @@ app.post('/createPOST', bodyParser.urlencoded({extended: false}), (req, res)=>{
 
         //checking this here too cuz submit.disabled can be
         //changed by user
-        if(Title.length > 40 || Author.lenght > 30){
+        if(Title.length > 35 || Author.lenght > 30){
           return res.send("invalid data!");
         }
 

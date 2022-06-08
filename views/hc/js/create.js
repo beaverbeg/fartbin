@@ -26,7 +26,7 @@ var checkTitle = function(){
     if(value==""){
         validTitle = false;
     }
-    else if(value.length > 40){
+    else if(value.length > 35){
         title.style.borderColor = "red";
         title_error.style.visibility = "visible";
         validTitle = false;
