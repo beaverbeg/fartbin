@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const {MongoClient, CommandStartedEvent} = require('mongodb');
 const app = express();
 
-const a = process.env.TOK;
-const url = "mongodb+srv://beaverbeg:Fp26ehds01DqF7iq@cluster0.gz12m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const a = process.env.password;
+const url = a;
 
 mongoose.connect(url);
 
