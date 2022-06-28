@@ -26,6 +26,9 @@ app.set('view engine', 'ejs');
 app.get('/', bodyParser.urlencoded({extended: false}),  (req, res) =>{
     res.sendFile('/views/main.html', {root: __dirname})
 })
+app.get('/__repl', (req, res)=>{
+  res.sendFile('/views/hc/notfound.html', {root: __dirname});
+})
 app.get('/create', bodyParser.urlencoded({extended: false}), (req, res)=>{
   res.sendFile('/views/create.html', {root: __dirname})
 })
